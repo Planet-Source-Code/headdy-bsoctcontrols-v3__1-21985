@@ -1,0 +1,133 @@
+VERSION 5.00
+Begin VB.PropertyPage Basics 
+   Caption         =   "Basics"
+   ClientHeight    =   2685
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   7020
+   BeginProperty Font 
+      Name            =   "Tahoma"
+      Size            =   8.25
+      Charset         =   0
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
+   PaletteMode     =   0  'Halftone
+   ScaleHeight     =   2685
+   ScaleWidth      =   7020
+   Begin VB.ComboBox cboBackType 
+      Height          =   315
+      ItemData        =   "Basics.pgx":0000
+      Left            =   4440
+      List            =   "Basics.pgx":0010
+      Style           =   2  'Dropdown List
+      TabIndex        =   7
+      Top             =   1800
+      Width           =   2415
+   End
+   Begin VB.ComboBox cboBorderStyle 
+      Height          =   315
+      ItemData        =   "Basics.pgx":0063
+      Left            =   4440
+      List            =   "Basics.pgx":0073
+      Style           =   2  'Dropdown List
+      TabIndex        =   5
+      Top             =   1080
+      Width           =   2415
+   End
+   Begin VB.ComboBox cboAlignment 
+      Height          =   315
+      ItemData        =   "Basics.pgx":00B3
+      Left            =   4440
+      List            =   "Basics.pgx":00C0
+      Style           =   2  'Dropdown List
+      TabIndex        =   3
+      Top             =   360
+      Width           =   2415
+   End
+   Begin VB.TextBox txtCaption 
+      Height          =   1770
+      Left            =   120
+      MultiLine       =   -1  'True
+      ScrollBars      =   2  'Vertical
+      TabIndex        =   1
+      Top             =   370
+      Width           =   4125
+   End
+   Begin VB.Label Label3 
+      AutoSize        =   -1  'True
+      Caption         =   "Background type"
+      Height          =   195
+      Left            =   4440
+      TabIndex        =   6
+      Top             =   1560
+      Width           =   1215
+   End
+   Begin VB.Label Label2 
+      AutoSize        =   -1  'True
+      Caption         =   "Border style"
+      Height          =   195
+      Left            =   4440
+      TabIndex        =   4
+      Top             =   840
+      Width           =   870
+   End
+   Begin VB.Label Label1 
+      AutoSize        =   -1  'True
+      Caption         =   "Caption alignment"
+      Height          =   195
+      Left            =   4440
+      TabIndex        =   2
+      Top             =   120
+      Width           =   1290
+   End
+   Begin VB.Label lblCaption 
+      AutoSize        =   -1  'True
+      Caption         =   "Caption"
+      Height          =   195
+      Left            =   120
+      TabIndex        =   0
+      Top             =   120
+      Width           =   555
+   End
+End
+Attribute VB_Name = "Basics"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+Option Explicit
+
+Private Sub cboAlignment_Click()
+   Changed = True
+End Sub
+
+Private Sub cboBackType_Change()
+   Changed = True
+End Sub
+
+Private Sub cboBorderStyle_Change()
+   Changed = True
+End Sub
+
+Private Sub txtCaption_Change()
+    Changed = True
+End Sub
+
+Private Sub PropertyPage_ApplyChanges()
+    SelectedControls(0).Caption = txtCaption.Text
+    SelectedControls(0).Alignment = cboAlignment.ListIndex
+    SelectedControls(0).BackType = cboBackType.ListIndex
+    SelectedControls(0).BorderStyle = cboBorderStyle.ListIndex
+End Sub
+
+Private Sub PropertyPage_SelectionChanged()
+    txtCaption.Text = SelectedControls(0).Caption
+    cboAlignment.ListIndex = SelectedControls(0).Alignment
+    cboBackType.ListIndex = SelectedControls(0).BackType
+    cboBorderStyle.ListIndex = SelectedControls(0).BorderStyle
+End Sub
+
+
