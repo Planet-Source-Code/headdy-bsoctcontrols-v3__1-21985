@@ -1,0 +1,63 @@
+VERSION 5.00
+Begin VB.PropertyPage Basics2 
+   Caption         =   "Margin"
+   ClientHeight    =   990
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   3570
+   BeginProperty Font 
+      Name            =   "Tahoma"
+      Size            =   8.25
+      Charset         =   0
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
+   PaletteMode     =   0  'Halftone
+   ScaleHeight     =   990
+   ScaleWidth      =   3570
+   Begin VB.TextBox txtMargin 
+      Height          =   330
+      Left            =   2880
+      TabIndex        =   1
+      Top             =   240
+      Width           =   525
+   End
+   Begin VB.Label lblMargin 
+      Caption         =   "Margin (between text and icon)"
+      Height          =   240
+      Left            =   120
+      TabIndex        =   0
+      Top             =   285
+      Width           =   2700
+   End
+End
+Attribute VB_Name = "Basics2"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+Option Explicit
+Private Sub txtMargin_Change()
+    Changed = True
+End Sub
+
+
+Private Sub PropertyPage_ApplyChanges()
+    SelectedControls(0).Margin = txtMargin.Text
+End Sub
+
+
+
+Private Sub PropertyPage_SelectionChanged()
+    txtMargin.Text = SelectedControls(0).Margin
+End Sub
+
+
+Private Sub txtMargin_LostFocus()
+   If Not IsNumeric(txtMargin.Text) Then
+      MsgBox "Numeric values only please."
+      txtMargin.SetFocus
+   End If
+End Sub
